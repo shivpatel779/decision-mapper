@@ -8,7 +8,7 @@ var Provider = require('react-redux').Provider;
 function reducer(state) { return state; }
 
 router.get('*', function(request, response) {
-    var initialState = { title: 'Universal React' };
+    var initialState = { title: 'Decision Mapper' };
     var store = Redux.createStore(reducer, initialState);
 
     ReactRouter.match({

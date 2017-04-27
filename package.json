@@ -1,8 +1,8 @@
 {
-  "name": "universal-react-tutorial",
+  "name": "decision_mapper",
   "version": "0.0.0",
-  "description": "A tutorial on building a universal React web application.",
-  "author": "Mark <mark@remarkablemark.org>",
+  "description": "",
+  "author": "",
   "scripts": {
     "start": "webpack && node server.js",
     "dev": "npm-run-all --parallel watch:*",
@@ -13,8 +13,7 @@
   "keywords": [
     "universal",
     "isomorphic",
-    "react",
-    "tutorial"
+    "react"
   ],
   "dependencies": {
     "babel-core": "^6.9.0",
