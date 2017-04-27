@@ -1,8 +1,11 @@
 .pokemons .paginate a{
   margin-right: 10px;
 }
+.pokemons .search-result{
+  margin-top: 15px;
+}
 .pokemons .paginate{
-  float: right;
+  float:left;
   margin-bottom: 30px;
 }
 #myModal .modal-title{
@@ -38,3 +41,50 @@
 .about h4{
   text-align: center;
 }
+
+/*Responsive style*/
+@media screen and (max-width: 980px) {
+  .pokemons .selectpicker{
+    width:68%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pokemons .selectpicker{
+    width: 68%;
+  }
+  .pokemons .category-text{
+    margin-left: 0px;
+  }
+  .pokemons .paginate {
+    float: left;
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
+  .pokemons  .bottom-page .paginate{
+    margin-top: 10px;
+   }
+  .pokemons input{
+    margin-bottom:15px;
+  }
+  .pokemons .result-counts {
+    float: right;
+    font-size: 14px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 25px;
+  }
+  .pokemons  .btn{
+    padding: 6px 12px;
+  }
+  .pokemons  .table-scroll{
+    margin-top: 18px;
+    overflow-x: scroll;
+  }
+  .search-result{
+    margin-top: 10px;
+  }
+  .pokemons{
+    overflow-y: auto;
+  }
+}
+/* End responsive style*/

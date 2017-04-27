@@ -81,10 +81,10 @@ module.exports = createReactClass({
       return (
         <div className='pokemons'>
           <h5>Listing Pokemons</h5>
-          <div className='col-md-6 col-xs-12 clearbox'>
+          <div className='col-md-6 col-sm-5 col-xs-12 clearbox'>
             <input type='text' ref='filter' onChange={this.handleFilter.bind(this, null)} placeholder='Filter by name...' className='form-control'/>
           </div> 
-          <div className='col-md-6 col-xs-12 clearbox'>
+          <div className='col-md-6 col-sm-7 col-xs-12 clearbox'>
             <div className='category-text'>Categories :</div>
             <select className="selectpicker" ref='select' onChange={this.filterByCategories.bind(this, null)}>
               <option value="all">All</option>
@@ -93,7 +93,50 @@ module.exports = createReactClass({
                 })
               }
             </select>
-
+          </div>
+          <div className="clearfix"></div>
+          <div className="search-result">
+             <div className='paginate'>
+                {
+                  this.state.previous != null ?
+                  <a href='#-' onClick={this.handlePrevious.bind(this, this.state.previous)} className='btn btn-primary'> Previous </a>
+                  : ""
+                }
+                {
+                  this.state.next != null ?
+                  <a href='#-' onClick={this.handleNext.bind(this,this.state.next)} className='btn btn-primary'>Next</a>
+                  : ""
+                }
+              </div>
+            <p className='result-counts'>{this.state.count} Results found.</p>
+          </div>
+          <div className="clearfix"></div>
+          <div className="table-scroll">
+            <table className="table table-striped table-inverse table-bordered">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>URL</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                { pokemons.map(function(pokemon, index){
+                  return (
+                    <tr key={index}>
+                      <th scope="row">{this.state.page+index+1}</th>
+                      <td>{pokemon.name}</td>
+                      <td>{pokemon.url}</td>
+                      <td><a href='#-' onClick={this.getPokemonsInDetails.bind(this, pokemon.url)} className='btn btn-success'  data-toggle="modal" data-target="#myModal">Show</a></td>
+                    </tr>
+                  )
+                }, this)
+                }  
+              </tbody>
+            </table>
+          </div> 
+          <div className="bottom-page"> 
             <div className='paginate'>
               {
                 this.state.previous != null ?
@@ -106,42 +149,6 @@ module.exports = createReactClass({
                 : ""
               }
             </div>
-          </div>
-          <p className='result-counts'>{this.state.count} Results found.</p>
-          <table className="table table-striped table-inverse table-bordered">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>URL</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              { pokemons.map(function(pokemon, index){
-                return (
-                  <tr key={index}>
-                    <th scope="row">{this.state.page+index+1}</th>
-                    <td>{pokemon.name}</td>
-                    <td>{pokemon.url}</td>
-                    <td><a href='#-' onClick={this.getPokemonsInDetails.bind(this, pokemon.url)} className='btn btn-success'  data-toggle="modal" data-target="#myModal">Show</a></td>
-                  </tr>
-                )
-              }, this)
-              }  
-            </tbody>
-          </table>
-          <div className='paginate'>
-            {
-              this.state.previous != null ?
-              <a href='#-' onClick={this.handlePrevious.bind(this, this.state.previous)} className='btn btn-primary'> Previous </a>
-              : ""
-            }
-            {
-              this.state.next != null ?
-              <a href='#-' onClick={this.handleNext.bind(this,this.state.next)} className='btn btn-primary'>Next</a>
-              : ""
-            }
           </div>
           <div id="myModal" className="modal fade" role="dialog">
             <div className="modal-dialog">
@@ -158,7 +165,6 @@ module.exports = createReactClass({
                   <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>  
