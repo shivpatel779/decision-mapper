@@ -6,7 +6,7 @@ module.exports = createReactClass({
     render: function() {
         return (
             <p>
-                Current: <strong>About</strong>
+               This is about page
             </p>
         );
     }
