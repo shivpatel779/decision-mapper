@@ -5,7 +5,7 @@ module.exports = createReactClass({
     displayName: 'Index',
     getInitialState: function(){
       return  {
-        pokemones: [],
+        pokemons: [],
         next: "",
         previous: "",
         count: "",
@@ -18,7 +18,7 @@ module.exports = createReactClass({
     },
     componentDidMount: function(){
       this.getCategories(this.state.categories_url);
-      this.getPokemones(this.state.base_url);
+      this.getPokemons(this.state.base_url);
     },
     getCategories: function(url){
       var _this = this;
@@ -26,17 +26,17 @@ module.exports = createReactClass({
         _this.setState({ categories: data.results });
       });
     },
-    getPokemones: function(url){
+    getPokemons: function(url){
       var _this = this;
       $.get( url, ).done(function( data ) {
-        _this.setState({ pokemones: data.results,
+        _this.setState({ pokemons: data.results,
                          previous: data.previous,
                          next: data.next,
                          count: data.count });
 
       });
     },
-    getPokemonesInDetails: function(url) {
+    getPokemonsInDetails: function(url) {
       var _this = this;
       $.get( url ).done(function( data ) {
         _this.setState({ pokemon: JSON.stringify(data)});
@@ -44,31 +44,31 @@ module.exports = createReactClass({
     },
     handleNext: function(url){
       this.setState({ page: this.state.page+20 });
-      this.getPokemones(url);
+      this.getPokemons(url);
     },
     handlePrevious: function(url){
       this.setState({ page: this.state.page-20 });
-      this.getPokemones(url);
+      this.getPokemons(url);
     },
     handleFilter: function(){
       var filter = this.refs.filter.value;
       if (filter.length == 0) {
-        this.getPokemones(this.state.base_url);
+        this.getPokemons(this.state.base_url);
       } else {
-        var new_pokemones = this.state.pokemones.filter(function(p){
+        var new_pokemons = this.state.pokemons.filter(function(p){
           return p.name.indexOf(filter) >= 0;
         });
       }
-      this.setState({ pokemones: new_pokemones });
+      this.setState({ pokemons: new_pokemons });
     },
     filterByCategories: function(){
       var _this = this;
       var value = this.refs.select.value;
       if ( value == "all" ) {
-        this.getPokemones(this.state.base_url);
+        this.getPokemons(this.state.base_url);
       } else{
         $.get( value ).done(function( data ) {
-          _this.setState({ pokemones: data.items,
+          _this.setState({ pokemons: data.items,
                            count: data.items.length,
                            previous: null,
                            next: null,
@@ -77,14 +77,14 @@ module.exports = createReactClass({
       }
     },
     render: function() {
-      var pokemones = this.state.pokemones;
+      var pokemons = this.state.pokemons;
       return (
-        <div className='pokemones'>
-          <h5>Listing Pokemones</h5>
-          <div className='col-md-6'>
+        <div className='pokemons'>
+          <h5>Listing Pokemons</h5>
+          <div className='col-md-6 col-xs-12 clearbox'>
             <input type='text' ref='filter' onChange={this.handleFilter.bind(this, null)} placeholder='Filter by name...' className='form-control'/>
           </div> 
-          <div className='col-md-6'>
+          <div className='col-md-6 col-xs-12 clearbox'>
             <div className='category-text'>Categories :</div>
             <select className="selectpicker" ref='select' onChange={this.filterByCategories.bind(this, null)}>
               <option value="all">All</option>
@@ -118,13 +118,13 @@ module.exports = createReactClass({
               </tr>
             </thead>
             <tbody>
-              { pokemones.map(function(pokemon, index){
+              { pokemons.map(function(pokemon, index){
                 return (
                   <tr key={index}>
                     <th scope="row">{this.state.page+index+1}</th>
                     <td>{pokemon.name}</td>
                     <td>{pokemon.url}</td>
-                    <td><a href='#-' onClick={this.getPokemonesInDetails.bind(this, pokemon.url)} className='btn btn-success'  data-toggle="modal" data-target="#myModal">Show</a></td>
+                    <td><a href='#-' onClick={this.getPokemonsInDetails.bind(this, pokemon.url)} className='btn btn-success'  data-toggle="modal" data-target="#myModal">Show</a></td>
                   </tr>
                 )
               }, this)

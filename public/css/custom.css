@@ -1,26 +1,37 @@
-.paginate a{
-	margin-right: 10px;
+.pokemons .paginate a{
+  margin-right: 10px;
 }
-.paginate{
-	float: right;
-	margin-bottom: 30px;
+.pokemons .paginate{
+  float: right;
+  margin-bottom: 30px;
 }
 #myModal .modal-title{
-	text-align: center;
+  text-align: center;
 }
-.result-counts {
-	float: right;
-    font-size: 14px;
+#myModal .modal-body{
+  padding-top: 0;
 }
-.selectpicker {
-    width: 40%;
-    height: 40px;
-    border-radius: 4px;
-    padding: 5px;
+#myModal .modal-header{
+  padding-bottom: 0;
 }
-.category-text {
-	width: 110px;
-    float: left;
-    margin-top: 4px;
-    font-size: 18px;
+.pokemons .result-counts {
+  float: right;
+  font-size: 14px;
+}
+.pokemons .selectpicker {
+  width: 40%;
+  height: 40px;
+  border-radius: 4px;
+  padding: 5px;
+}
+.pokemons .category-text {
+  width: 110px;
+  float: left;
+  margin-top: 4px;
+  font-size: 18px;
+  margin-left: 20px;
+
+}
+.pokemons .clearbox{
+  padding: 0;
 }
