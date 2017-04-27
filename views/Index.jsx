@@ -148,10 +148,10 @@ module.exports = createReactClass({
               <div className="modal-content">
                 <div className="modal-header">
                   <button type="button" className="close" data-dismiss="modal">&times;</button>
-                  <h4 className="modal-title">Pokemon</h4>
+                  <h4 className="modal-title">Pokemon </h4>
                 </div>
                 <div className="modal-body">
-                  <p>Pokemon details</p>
+                  <p>Pokemon details in JSON</p>
                   <pre>{this.state.pokemon}</pre>
                 </div>
                 <div className="modal-footer">

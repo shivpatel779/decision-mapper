@@ -5,9 +5,11 @@ module.exports = createReactClass({
   displayName: 'About',
   render: function() {
     return (
-      <p>
-        This is about page
-      </p>
+      <div className='about'>
+        <h4>
+          This is Decision Mapper
+        </h4>
+      </div>
     );
   }
 });
