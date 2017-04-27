@@ -30,9 +30,9 @@ module.exports = createReactClass({
       var _this = this;
       $.get( url, ).done(function( data ) {
         _this.setState({ pokemones: data.results,
-                        previous: data.previous,
-                        next: data.next,
-                        count: data.count });
+                         previous: data.previous,
+                         next: data.next,
+                         count: data.count });
 
       });
     },
@@ -68,7 +68,11 @@ module.exports = createReactClass({
         this.getPokemones(this.state.base_url);
       } else{
         $.get( value ).done(function( data ) {
-          _this.setState({ pokemones: data.items, count: data.items.length, previous: null, next: null, page:0 }); 
+          _this.setState({ pokemones: data.items,
+                           count: data.items.length,
+                           previous: null,
+                           next: null,
+                           page:0 }); 
         }); 
       }
     },

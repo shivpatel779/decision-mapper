@@ -33,9 +33,9 @@ var Layout = createReactClass({
 });
 
 var wrapper = connect(
-    function(state) {
-        return { custom: state };
-    }
+  function(state) {
+    return { custom: state };
+  }
 );
 
 module.exports = wrapper(Layout);
