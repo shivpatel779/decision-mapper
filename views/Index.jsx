@@ -13,7 +13,8 @@ module.exports = createReactClass({
         pokemon: [],
         base_url: "http://pokeapi.co/api/v2/item/",
         categories_url: "http://pokeapi.co/api/v2/item-category/",
-        categories: []
+        categories: [],
+        fetch_data: false
       }
     },
     componentDidMount: function(){
@@ -32,7 +33,8 @@ module.exports = createReactClass({
         _this.setState({ pokemons: data.results,
                          previous: data.previous,
                          next: data.next,
-                         count: data.count });
+                         count: data.count,
+                         fetch_data: true });
 
       });
     },
@@ -98,17 +100,19 @@ module.exports = createReactClass({
           <div className="search-result">
              <div className='paginate'>
                 {
-                  this.state.previous != null ?
+                  this.state.previous != null && this.state.fetch_data?
                   <a href='#-' onClick={this.handlePrevious.bind(this, this.state.previous)} className='btn btn-primary'> Previous </a>
                   : ""
                 }
                 {
-                  this.state.next != null ?
+                  this.state.next != null && this.state.fetch_data ?
                   <a href='#-' onClick={this.handleNext.bind(this,this.state.next)} className='btn btn-primary'>Next</a>
                   : ""
                 }
               </div>
-            <p className='result-counts'>{this.state.count} Results found.</p>
+              { this.state.fetch_data ?
+                <p className='result-counts'>{this.state.count} Results found.</p> : ""
+              }
           </div>
           <div className="clearfix"></div>
           <div className="table-scroll">
@@ -139,12 +143,12 @@ module.exports = createReactClass({
           <div className="bottom-page"> 
             <div className='paginate'>
               {
-                this.state.previous != null ?
+                this.state.previous != null && this.state.fetch_data ?
                 <a href='#-' onClick={this.handlePrevious.bind(this, this.state.previous)} className='btn btn-primary'> Previous </a>
                 : ""
               }
               {
-                this.state.next != null ?
+                this.state.next != null && this.state.fetch_data?
                 <a href='#-' onClick={this.handleNext.bind(this,this.state.next)} className='btn btn-primary'>Next</a>
                 : ""
               }
